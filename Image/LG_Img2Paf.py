@@ -277,12 +277,13 @@ def encode_8bpp_up(image, bpp, xor_frame = False):
         img_data = imgto332(image)
     elif bpp == 16:
         img_data = imgto565(image)
-    elif bpp == 18:
-        img_data = imgto666(image)
     elif bpp == 24:
         img_data = imgto888(image)
     elif bpp == 32:
         img_data = imgto8888(image)
+    elif bpp == 18:
+        img_data = imgto666(image)
+        bpp = 32
     
     temp_data = []
     if xor_frame and prev_buffer_xor:
