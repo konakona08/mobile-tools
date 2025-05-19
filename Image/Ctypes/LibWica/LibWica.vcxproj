@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{5F694BF0-B72D-4711-9FC2-9373C66DC0E1}</ProjectGuid>
+    <RootNamespace>Lib</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>17.0.35431.28</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..</OutDir>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..</OutDir>
+    <TargetName>$(ProjectName)$(PlatformArchitecture)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Wica\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ARCH_IS_32BIT;ARCH_IS_IA32;ENCODER_SUPPORT;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Wica\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ARCH_IS_64BIT;ARCH_IS_GENERIC;ENCODER_SUPPORT;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Wica\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ARCH_IS_32BIT;ARCH_IS_IA32;ENCODER_SUPPORT;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Wica\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ARCH_IS_64BIT;ARCH_IS_GENERIC;ENCODER_SUPPORT;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Wica\src\compress\wci_huff_compress.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_huff_decompress.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_huff_tabs.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_qsp.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_compress.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_decompress.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_header.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_stripe_decompress.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_rle.c" />
+    <ClCompile Include="..\Wica\src\compress\wci_vlc.c" />
+    <ClCompile Include="..\Wica\src\image\wci_color_space_in.c" />
+    <ClCompile Include="..\Wica\src\image\wci_color_space_out.c" />
+    <ClCompile Include="..\Wica\src\image\wci_color_space_table.c" />
+    <ClCompile Include="..\Wica\src\image\wci_image.c" />
+    <ClCompile Include="..\Wica\src\image\wci_image_component.c" />
+    <ClCompile Include="..\Wica\src\image\wci_image_convert.c" />
+    <ClCompile Include="..\Wica\src\main\wci_codec.c" />
+    <ClCompile Include="..\Wica\src\main\wci_encoder.c" />
+    <ClCompile Include="..\Wica\src\main\wci_frame.c" />
+    <ClCompile Include="..\Wica\src\main\wci_profile.c" />
+    <ClCompile Include="..\Wica\src\main\wci_stripe_decoder.c" />
+    <ClCompile Include="..\Wica\src\utils\wci_emms.c" />
+    <ClCompile Include="..\Wica\src\utils\wci_mem_align.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_adpcm.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_lpc.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wavelet.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_block_dequant.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_block_quant.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_codec.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_layer.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_quant.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_stripe.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_stripe_quant.c" />
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_stripe_trans.c" />
+    <ClCompile Include="WicaLib.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Wica\inc\bitstream\wci_bitstream.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_huff_compress.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_huff_decompress.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_huff_tabs.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_compress.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_decompress.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_header.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_stripe_decompress.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_rle.h" />
+    <ClInclude Include="..\Wica\inc\compress\wci_vlc.h" />
+    <ClInclude Include="..\Wica\inc\image\wci_color_space_in.h" />
+    <ClInclude Include="..\Wica\inc\image\wci_color_space_out.h" />
+    <ClInclude Include="..\Wica\inc\image\wci_color_space_table.h" />
+    <ClInclude Include="..\Wica\inc\image\wci_image.h" />
+    <ClInclude Include="..\Wica\inc\image\wci_image_component.h" />
+    <ClInclude Include="..\Wica\inc\image\wci_image_convert.h" />
+    <ClInclude Include="..\Wica\inc\main\wci_codec.h" />
+    <ClInclude Include="..\Wica\inc\main\wci_encoder.h" />
+    <ClInclude Include="..\Wica\inc\main\wci_frame.h" />
+    <ClInclude Include="..\Wica\inc\main\wci_global.h" />
+    <ClInclude Include="..\Wica\inc\main\wci_profile.h" />
+    <ClInclude Include="..\Wica\inc\utils\wci_emms.h" />
+    <ClInclude Include="..\Wica\inc\utils\wci_mem_align.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_adpcm.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_lpc.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wavelet.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_block_quant.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_codec.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_layer.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_quant.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_stripe.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_stripe_quant.h" />
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_stripe_trans.h" />
+    <ClInclude Include="..\Wica\inc\wci_portab.h" />
+    <ClInclude Include="WicaLib.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\WICA">
+      <UniqueIdentifier>{48bf2ba1-61bb-4101-93d8-ea0d30743744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WICA\Compress">
+      <UniqueIdentifier>{7c5d6927-5aa9-423d-9d0c-ed210313ecac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WICA\Image">
+      <UniqueIdentifier>{ec6a1c89-761f-4e33-846f-bbc8d930112f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WICA\Main">
+      <UniqueIdentifier>{5f8b9cd0-0cc3-490d-bc15-9cc89acac5b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WICA\Utils">
+      <UniqueIdentifier>{db0d99b6-b33c-48e6-abf4-c983d7665dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WICA\Wavelet">
+      <UniqueIdentifier>{7dc621e1-f905-4208-9274-9334a2c13729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\WICA">
+      <UniqueIdentifier>{3682259c-a9ea-4bd1-93a2-5f7e9806606e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WICA\Bitstream">
+      <UniqueIdentifier>{78e8dee7-7efa-4528-973e-48e28fc14a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WICA\Compress">
+      <UniqueIdentifier>{9be69ceb-6a7d-499d-a315-8fb73c840470}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WICA\Image">
+      <UniqueIdentifier>{2b9d26cb-fe24-44b7-ab57-2aaae2c310c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WICA\Main">
+      <UniqueIdentifier>{2113a561-9402-4bbd-aacc-a41f51eab4b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WICA\Utils">
+      <UniqueIdentifier>{37b3b7ef-ac26-4efc-8137-c2644269bf91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WICA\Wavelet">
+      <UniqueIdentifier>{5e318ee6-7a0b-434c-92fb-83444f57ac9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WicaLib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_huff_compress.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_huff_decompress.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_huff_tabs.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_qsp.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_compress.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_decompress.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_header.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_qsp_stripe_decompress.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_rle.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\compress\wci_vlc.c">
+      <Filter>Source Files\WICA\Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\image\wci_color_space_in.c">
+      <Filter>Source Files\WICA\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\image\wci_color_space_out.c">
+      <Filter>Source Files\WICA\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\image\wci_color_space_table.c">
+      <Filter>Source Files\WICA\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\image\wci_image.c">
+      <Filter>Source Files\WICA\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\image\wci_image_component.c">
+      <Filter>Source Files\WICA\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\image\wci_image_convert.c">
+      <Filter>Source Files\WICA\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\main\wci_codec.c">
+      <Filter>Source Files\WICA\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\main\wci_encoder.c">
+      <Filter>Source Files\WICA\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\main\wci_frame.c">
+      <Filter>Source Files\WICA\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\main\wci_profile.c">
+      <Filter>Source Files\WICA\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\main\wci_stripe_decoder.c">
+      <Filter>Source Files\WICA\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\utils\wci_emms.c">
+      <Filter>Source Files\WICA\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\utils\wci_mem_align.c">
+      <Filter>Source Files\WICA\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_adpcm.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_lpc.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_block_dequant.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_block_quant.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_codec.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_layer.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_quant.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_stripe.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_stripe_quant.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wav_stripe_trans.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wica\src\wavelet\wci_wavelet.c">
+      <Filter>Source Files\WICA\Wavelet</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WicaLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wci_portab.h">
+      <Filter>Header Files\WICA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\bitstream\wci_bitstream.h">
+      <Filter>Header Files\WICA\Bitstream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_huff_compress.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_huff_decompress.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_huff_tabs.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_compress.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_decompress.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_header.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_qsp_stripe_decompress.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_rle.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\compress\wci_vlc.h">
+      <Filter>Header Files\WICA\Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\image\wci_color_space_in.h">
+      <Filter>Header Files\WICA\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\image\wci_color_space_out.h">
+      <Filter>Header Files\WICA\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\image\wci_color_space_table.h">
+      <Filter>Header Files\WICA\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\image\wci_image.h">
+      <Filter>Header Files\WICA\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\image\wci_image_component.h">
+      <Filter>Header Files\WICA\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\image\wci_image_convert.h">
+      <Filter>Header Files\WICA\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\main\wci_codec.h">
+      <Filter>Header Files\WICA\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\main\wci_encoder.h">
+      <Filter>Header Files\WICA\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\main\wci_frame.h">
+      <Filter>Header Files\WICA\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\main\wci_global.h">
+      <Filter>Header Files\WICA\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\main\wci_profile.h">
+      <Filter>Header Files\WICA\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\utils\wci_emms.h">
+      <Filter>Header Files\WICA\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\utils\wci_mem_align.h">
+      <Filter>Header Files\WICA\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_adpcm.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_lpc.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_block_quant.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_codec.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_layer.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_quant.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_stripe.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_stripe_quant.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wav_stripe_trans.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wica\inc\wavelet\wci_wavelet.h">
+      <Filter>Header Files\WICA\Wavelet</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
