@@ -1,5 +1,5 @@
 from PIL import Image
-import FindArch
+from . import FindArch
 import ctypes
 import os
 import typing
