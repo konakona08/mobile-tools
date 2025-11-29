@@ -2,6 +2,7 @@ import struct
 import os
 import zlib, sys
 from PIL import Image
+from construct import *
 
 ImageHeader = Struct(
         "magic" / Bytes(4),
