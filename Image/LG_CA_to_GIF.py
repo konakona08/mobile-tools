@@ -3,13 +3,26 @@ import os
 import sys
 from PIL import Image
 import lxml.etree
+import datetime
+
+end_tag = "</PowerAnimationParameters>"
 
 if len(sys.argv) < 3:
 	print(f"Not enough arguments! usage: {sys.argv[0]} xml_file ani_folder", file=sys.stderr)
 	sys.exit(1)
 
 ani_folder = sys.argv[2]
-config = lxml.etree.parse(sys.argv[1]).getroot()
+# exclude other things than poweranimparameters, other stuff is useless
+ani_data = open(sys.argv[1], 'r').read()
+end_index = ani_data.find(end_tag)
+assert end_index != -1, "Invalid XML, did you provide an LG CAInfo XML?"
+our_stuff = ani_data[0:end_index+len(end_tag)]
+our_stuff += "\r\n</CAInfo>"
+# There's no way to get root of xml by fromstring, so create a tempfile
+temp_filename = ani_folder + "/" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S_temp.xml")
+open(temp_filename, 'w').write(our_stuff)
+config = lxml.etree.parse(temp_filename).getroot()
+os.remove(temp_filename)
 basepath = os.path.dirname(sys.argv[1])
 
 '''
