@@ -101,6 +101,9 @@ if __name__ == "__main__":
     fd = open(sys.argv[1], "rb")
     #####argv2 is align
     align = int(sys.argv[2]) if len(sys.argv) > 2 else 4
+    off = int(sys.argv[3]) if len(sys.argv) > 3 else 0
+    fd.read(off)
+    sz -= off
     a = 0
     szt = 0
     while sz > 0:
