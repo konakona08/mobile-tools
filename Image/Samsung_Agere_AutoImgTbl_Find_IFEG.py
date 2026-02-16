@@ -21,7 +21,10 @@ def parse_entries(bdata, offset):
         entries.append(entry)
         offset += Entry.sizeof()
     return entries
-            
+
+def hex_int(value):
+    return int(value, 16)
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser("agere_itblfind")
     
@@ -29,8 +32,11 @@ if __name__ == "__main__":
     ap.add_argument("disp_width", type=int)
     ap.add_argument("disp_height", type=int)
     ap.add_argument("out_folder")
+    ap.add_argument("--doffset", "-d", type=hex_int, default=0, help="Offset of image in memory")
     
     args = ap.parse_args()
+    
+    doffset = args.doffset
 
     if not (os.path.exists(args.out_folder)):	os.mkdir(args.out_folder)	
 
@@ -60,6 +66,9 @@ if __name__ == "__main__":
 
     for i, entry in enumerate(entries):
         print(f"Processing entry {i} at offset {entry.offs:08x}")
-        img = Imaster_IFEG_Agere.ifgDecode(ftmp[entry.offs:])
-        if img:
-            img.save(f"{args.out_folder}/IMG_{i}.png")
+        try:
+            img = Imaster_IFEG_Agere.ifgDecode(ftmp[entry.offs-doffset:])
+            if img:
+                img.save(f"{args.out_folder}/IMG_{i}.png")
+        except:
+            pass
