@@ -94,7 +94,7 @@ if on_ani_sub_frames+off_ani_sub_frames > 0:
 	if on_ani_sub_frames > 0:
 		print(f"On animation frames:{on_ani_sub_frames}")
 		on_ani_sub_frames_dec = []
-		on_ani_sub_fn = config.get_value("PowerOnOffAniInit","PowerOffSubAniPrefix")[0]
+		on_ani_sub_fn = config.get_value("PowerOnOffAniInit","PowerOnSubAniPrefix")[0]
 		for t in range(int(on_ani_sub_frames)):
 			data_size = os.path.getsize(f"{basepath}\\Image\\{on_ani_sub_fn}{t}")
 			data = open(f"{basepath}\\Image\\{on_ani_sub_fn}{t}", "rb").read()
