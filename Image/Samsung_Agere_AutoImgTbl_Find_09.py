@@ -56,6 +56,35 @@ def parse_entries(bdata, offset):
 def hex_int(value):
     return int(value, 16)
 
+def find_tbl(ftmp, start, disp_width, disp_height):
+    offset = ftmp.find(struct.pack("<HH", disp_width, disp_height), start)
+    found = False
+    while True:
+        if ftmp[offset+8:offset+12] == struct.pack("<HH", disp_width, disp_height):
+            #########find starting tbl entry
+            while True:
+                entry_tmp = Entry.parse(ftmp[offset:offset+Entry.sizeof()])
+                if entry_tmp.width == 0 and entry_tmp.height == 0 and entry_tmp.offs == 0:
+                    #if the entry before the previous entry's w&h combined is something >= 0x3000000 and not < 0x20000000
+                    #then it's not the correct table (SGH-E715; E75UVWK4)
+                    #This also applies to offsets < 0x20 (SGH-S300; S30XEWB1)
+                    temp = struct.unpack("<I", ftmp[offset-8:offset-4])[0]
+                    temp2 = struct.unpack("<I", ftmp[offset-4:offset])[0]
+                    if (temp < 0x3000000 and temp2 < 0x20) or (temp >= 0x3000000 and temp < 0x20000000):
+                        found = False
+                        temp_len = len(parse_entries(ftmp, offset+8))*Entry.sizeof()
+                        return find_tbl(ftmp, offset + temp_len, disp_width, disp_height)
+                    found = True
+                    break
+                offset -= Entry.sizeof()
+        else:
+            offset = ftmp.find(struct.pack("<HH", disp_width, disp_height), offset+8)
+        if found:
+            break
+        if offset == -1:
+            break
+    return offset
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser("agere_itblfind")
     
@@ -72,26 +101,12 @@ if __name__ == "__main__":
     if not (os.path.exists(args.out_folder)):	os.mkdir(args.out_folder)	
 
     ftmp = open(args.in_file, "rb").read()
-    
-    offset = ftmp.find(struct.pack("<HH", args.disp_width, args.disp_height))
-    found = False
-    while True:
-        if ftmp[offset+8:offset+12] == struct.pack("<HH", args.disp_width, args.disp_height):
-            #########find starting tbl entry
-            while True:
-                entry_tmp = Entry.parse(ftmp[offset:offset+Entry.sizeof()])
-                if entry_tmp.width == 0 and entry_tmp.height == 0 and entry_tmp.offs == 0:
-                    found = True
-                    break
-                offset -= Entry.sizeof()
-        else:
-            offset = ftmp.find(struct.pack("<HH", args.disp_width, args.disp_height), offset+8)
-        if found:
-            break
-        if offset == -1:
-            break
+
+    offset = find_tbl(ftmp, 0, args.disp_width, args.disp_height)
 
     offset += 8
+
+    print(f"Found table at offset {offset:08x}")
 
     entries = parse_entries(ftmp, offset)
 
