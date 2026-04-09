@@ -130,135 +130,109 @@ def encode_1bpp_2bpp(image, bpp, invert = False, xor_frame = False):
         for a in range(len(img_data)):
             temp_data.append(img_data[a])
 
-    b = 0
     img_out = bytearray()
 
+    max_rle_medium = 2048
+    max_rle_short = 16
     if bpp == 1:
         twostep_pels = 14
         onestep_pels = 6
-        max_rle_long = 1048576
-        max_rle_medium = 4096
-        max_rle_short = 32
         rle_long_shift = 15
         rle_med_shift = 7
+        two_step_rle_compens_len = 8
     elif bpp == 2:
         twostep_pels = 7
         onestep_pels = 3
-        max_rle_long = 524286
-        max_rle_medium = 2048
-        max_rle_short = 16
         rle_long_shift = 14
         rle_med_shift = 6
+        two_step_rle_compens_len = 3
     
 
+    b = 0
     while b < len(temp_data):
         pixel = temp_data[b]
-        b += 1
-
-        count = 1;
-        while (b < len(temp_data)) and (temp_data[b] == pixel) and (count < max_rle_long):
+        count = 0
+        while b + count < len(temp_data) and temp_data[b + count] == pixel:
             count += 1
-            b += 1
 
         if count > 1:
             if count >= max_rle_medium:
                 temp = (count & ((1 << rle_long_shift) - 1)) << bpp | pixel
                 cmd = (count >> rle_long_shift) | 0x60
                 img_out.append(cmd)
-                if temp >> 8:
-                    img_out.append(temp >> 8)
+                img_out.append((temp >> 8) & 0xff)
                 img_out.append(temp & 0xff)
-            
             elif count >= max_rle_short:
                 temp = (count & ((1 << rle_med_shift) - 1)) << bpp | pixel
                 cmd = (count >> rle_med_shift) | 0x40
                 img_out.append(cmd)
                 img_out.append(temp & 0xff)
-            
             else:
                 cmd = (count << bpp) | pixel
                 img_out.append(cmd)
-
-            continue
-        
-        if b < len(temp_data):
-            if count == 1:
-                literal_pixels = [pixel]
-            else:
-                literal_pixels = [temp_data[b]]
-                b += 1
-            
-            literal_count = 1
-
-            while (b < len(temp_data)) and (temp_data[b] != temp_data[b - 1]):
-                literal_pixels.append(temp_data[b])
-                b += 1
-                literal_count += 1
-            
-            curr_twostep_cnt = 0
-            curr_onestep_cnt = 0
-            curr_literal = 0
-
-            if literal_count % twostep_pels == 0:
-                twostep_cnt = literal_count // twostep_pels
-                while curr_twostep_cnt < twostep_cnt:
-                    temp = 0
-                    curr_twostep_pel = 0
-                    while curr_twostep_pel < twostep_pels:
-                        temp = (temp << bpp) | literal_pixels[curr_literal]
-                        curr_literal += 1
-                        curr_twostep_pel += 1
-                    curr_twostep_cnt += 1
-                    cmd = (temp >> 8) | 0xc0
-                    img_out.append(cmd)
-                    img_out.append(temp & 0xff)      
-            elif literal_count % onestep_pels == 0:
-                onestep_cnt = literal_count // onestep_pels
-                while curr_onestep_cnt < onestep_cnt:
-                    temp = 0
-                    curr_onestep_pel = 0
-                    while curr_onestep_pel < onestep_pels:
-                        temp = (temp << bpp) | literal_pixels[curr_literal]
-                        curr_literal += 1
-                        curr_onestep_pel += 1
-                    curr_onestep_cnt += 1
-                    cmd = temp | 0x80
-                    img_out.append(cmd)   
-            else:
-                twostep_cnt = literal_count // twostep_pels
-                onestep_cnt = (literal_count - (twostep_cnt * twostep_pels)) // onestep_pels
-
-                if (literal_count - (twostep_cnt * twostep_pels + onestep_cnt * onestep_pels)) > 0:
-                    for _ in range(onestep_pels-(literal_count - (twostep_cnt * twostep_pels + onestep_cnt * onestep_pels))):
-                        literal_pixels.append(temp_data[b] if b < len(temp_data) else temp_data[len(temp_data) - 1])
-                        literal_count += 1
-                        b += 1
-
-                twostep_cnt = literal_count // twostep_pels
-                onestep_cnt = (literal_count - (twostep_cnt * twostep_pels)) // onestep_pels
-            
-                while curr_twostep_cnt < twostep_cnt:
-                    temp = 0
-                    curr_twostep_pel = 0
-                    while curr_twostep_pel < twostep_pels:
-                        temp = (temp << bpp) | literal_pixels[curr_literal]
-                        curr_literal += 1
-                        curr_twostep_pel += 1
-                    curr_twostep_cnt += 1
-                    cmd = (temp >> 8) | 0xc0
-                    img_out.append(cmd)
-                    img_out.append(temp & 0xff)
+            b += count
+        else:
+            lit_pels = []
+            while b < len(temp_data) and len(lit_pels) < twostep_pels:
+                p_pixel = temp_data[b]
+                p_run = 0
+                while b + p_run < len(temp_data) and temp_data[b + p_run] == p_pixel:
+                    p_run += 1
                 
-                while curr_onestep_cnt < onestep_cnt:
-                    temp = 0
-                    curr_onestep_pel = 0
-                    while curr_onestep_pel < onestep_pels:
-                        temp = (temp << bpp) | literal_pixels[curr_literal]
-                        curr_literal += 1
-                        curr_onestep_pel += 1
-                    curr_onestep_cnt += 1
-                    cmd = temp | 0x80
-                    img_out.append(cmd)
+                if p_run >= twostep_pels:
+                    target = onestep_pels if len(lit_pels) < onestep_pels else twostep_pels
+                    take = max(0, target - len(lit_pels))
+                    take = min(take, p_run) 
+                    
+                    lit_pels.extend([temp_data[b]] * take)
+                    b += take
+                    break 
+                else:
+                    take = min(p_run, twostep_pels - len(lit_pels))
+                    lit_pels.extend([temp_data[b]] * take)
+                    b += take           
+
+            #In original encoder and some research, it was found out
+            #that the second half of the step (if two step) must be
+            #checked to see if it is a whole run, if so we set a flag
+            #to encode it into one step and decrement the offset
+            #to encode it from that second half
+            if bpp == 1:
+                len_arr = [1]
+            elif bpp == 2:
+                len_arr = [1,2]
+            if len(lit_pels) == twostep_pels:
+                compensation = lit_pels[onestep_pels:]
+                runs = []
+                my_run = 1
+                for _ in range(two_step_rle_compens_len-1):
+                    if compensation[_+1] == compensation[_]:
+                        my_run += 1
+                    else:
+                        runs.append(my_run)
+                        my_run = 0
+                    if _ == two_step_rle_compens_len-2:
+                        runs.append(my_run)
+                        break
+                if len(runs) == 1:
+                    #we found a run block, let's make it a one step
+                    b -= len(compensation)
+                    lit_pels = lit_pels[:onestep_pels]
+
+
+            is_twostep = len(lit_pels) == twostep_pels
+            target = twostep_pels if is_twostep else onestep_pels
+
+            temp = 0
+            for p in lit_pels:
+                temp = (temp << bpp) | p
+                
+            if not is_twostep:
+                img_out.append(temp | 0x80)
+
+            else:
+                img_out.append((temp >> 8) | 0xc0)
+                img_out.append(temp & 0xff)
 
     if prev_buffer_xor is None:
         prev_buffer_xor = []

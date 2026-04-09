@@ -64,14 +64,15 @@ def vDecodeFrame(data, length):
 
     mu.mem_map(0x0, 4*1024*1024) # Code
     mu.mem_map(0xa8000000, 16*1024*1024) # Code Ram
-    mu.mem_map(0x02000000, 16*1024*1024) # Buffer
-    mu.mem_map(0x03000000, 16*1024*1024) # Stack Pointer
+    mu.mem_map(0x02000000, 48*1024*1024) # Buffer
+    mu.mem_map(0x05000000, 16*1024*1024) # Stack Pointer
     #mu.mem_map(MALLOC_BUFFER_ADDRESS, 1*1024*1024) # Malloc buffer
 
     mu.ctl_exits_enabled(True)
     mu.ctl_set_exits([0x0])
 
     flashParser.parse(mu, FLASH)
+
 
     mu.mem_write(0x02000000, data)
     
@@ -80,7 +81,7 @@ def vDecodeFrame(data, length):
     mu.reg_write(UC_ARM_REG_R0, 0x02000000)        
     mu.reg_write(UC_ARM_REG_R1, out_offset)
 
-    mu.reg_write(UC_ARM_REG_SP, 0x03040000)        
+    mu.reg_write(UC_ARM_REG_SP, 0x05040000)        
 
     mu.reg_write(UC_ARM_REG_APSR, 0xffffffff)
     mu.hook_add(UC_HOOK_CODE, hook_code, heap)
@@ -103,8 +104,8 @@ def qmDecodeFrame(data, length):
 
     mu.mem_map(0x0, 4*1024*1024) # Code
     mu.mem_map(0xa8000000, 4*1024*1024) # Code Ram
-    mu.mem_map(0x02000000, 8*1024*1024) # Buffer
-    mu.mem_map(0x03000000, 2*1024*1024) # Stack Pointer
+    mu.mem_map(0x02000000, 48*1024*1024) # Buffer
+    mu.mem_map(0x05000000, 2*1024*1024) # Stack Pointer
     #mu.mem_map(MALLOC_BUFFER_ADDRESS, 1*1024*1024) # Malloc buffer
 
     mu.ctl_exits_enabled(True)
@@ -120,7 +121,7 @@ def qmDecodeFrame(data, length):
     mu.reg_write(UC_ARM_REG_R1, len(data))
     mu.reg_write(UC_ARM_REG_R2, out_offset)
 
-    mu.reg_write(UC_ARM_REG_SP, 0x03040000)        
+    mu.reg_write(UC_ARM_REG_SP, 0x05040000)        
 
     mu.reg_write(UC_ARM_REG_APSR, 0xffffffff)
     mu.hook_add(UC_HOOK_CODE, hook_code, heap)
